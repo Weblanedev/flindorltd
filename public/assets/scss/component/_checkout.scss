@@ -1,0 +1,44 @@
+@use "../abstract" as *;
+.custom_padding {
+    padding-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    @media #{$xs} {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  
+  .pagination_tabs {
+    position: absolute;
+  }
+  
+  .contact-from-input input {
+    background: var(--clr-bg-footer);
+    border: none;
+    padding: 15px 20px;
+    border-radius: 4px;
+    resize: none;
+    outline: 0;
+    width: 100%;
+  }
+  
+  .update-close-btn {
+    background: var(--clr-common-black);
+    padding: 10px;
+    border-radius: 5px;
+    height: 60px;
+    width: 50px;
+    color: var(--clr-common-white);
+    border: 1px solid var(--clr-common-black);
+  }
+  .update-close-btn:hover {
+    background: var(--clr-common-white);
+    color: var(--clr-common-black);
+    border: 1px solid var(--clr-common-black);
+  }
+  
+  
+.order_summary {
+  margin-top: 50px;
+}

@@ -1,0 +1,539 @@
+@use "../abstract" as *;
+.vendor_card {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0px 2px 5px 0px var(--clr-common-border);
+  border-radius: 5px;
+} 
+.vendor_profile_img {
+  height: 150px;
+  width: 150px;
+}
+
+.vendor_profile_img img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--clr-common-border);
+}
+
+// vendor details
+
+.vendor_details_content {
+  box-shadow: 0px 2px 5px 0px var(--clr-common-border);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.vendor_card_with_img img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.vendor_card_with_img {
+  height: 80px;
+  width: 80px;
+  overflow: hidden;
+}
+
+.vendor_description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-wrap: wrap;
+  border-right: 1px solid var(--clr-common-border);
+  border-left: 1px solid var(--clr-common-border);
+  padding: 20px;
+  p {
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 991px) {
+  .vendor_description {
+    align-items: center;
+    border-right:none;
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+.vendor_social {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.vendor_social .social__links {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.content_vendor {
+  background: var(--clr-common-white);
+}
+.vendor_profile_wrapper {
+  margin-top: -80px;
+}
+
+// ===
+.creator-single {
+  transition: 0.3s;
+  background: var(--clr-bg-footer);
+}
+
+.creator-cover-img {
+  img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    height: 150px;
+    object-fit: cover;
+  }
+}
+
+.creator-inner {
+  border-radius: 10px;
+}
+
+.creator-content {
+  border: 1px solid var(--clr-bg-footer);
+  border-radius: 0 0 10px 10px;
+  padding: 0px 30px 30px 30px;
+  text-align: center;
+  background: var(--clr-bg-footer);
+
+  @media #{$xl} {
+    padding: 0px 20px 30px 20px;
+  }
+
+  @media #{$sm} {
+    padding: 0px 10px 30px 10px;
+  }
+}
+
+.artist-meta-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 37px;
+}
+
+.follow-artist {
+  height: 40px;
+  background-image: linear-gradient(to right, #2b81ff, #7237ff, #2b81ff);
+  background-size: 200% 100%;
+  display: inline-block;
+  line-height: 40px;
+  color: var(--clr-common-white);
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 0 27px;
+  padding-left: 47px;
+  position: relative;
+  transition: 0.3s;
+
+  &:before {
+    position: absolute;
+    content: "\f067";
+    left: 27px;
+    top: 0;
+    font-family: "Font Awesome 5 Pro";
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--clr-common-white);
+  }
+
+  &:hover {
+    background-position: 100% 100%;
+  }
+}
+
+.follow-artist.followed {
+  background: var(--clr-common-white);
+  color: var(--clr-common-text);
+  border: 1px solid var(--clr-common-border);
+
+  &:before {
+    content: "\f00c";
+    color: var(--clr-common-text);
+  }
+}
+
+.profile-img img {
+  width: 90px;
+  border: 5px solid var(--clr-common-white);
+  border-radius: 50%;
+  background: var(--clr-common-white);
+}
+
+.creator-info {
+  margin-top: -40px;
+  z-index: 2;
+  margin-bottom: 37px;
+  margin-top: -40px;
+  z-index: 2;
+  margin-bottom: 37px;
+
+  .artist-name {
+    font-size: 18px;
+    margin-bottom: 4px;
+
+    a:hover {
+      color: var(--clr-common-blue);
+    }
+  }
+
+  .artist-id {
+    color: var(--clr-common-blue);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .profile-img {
+    margin-bottom: 18px;
+  }
+}
+
+.artist-meta-type {
+  font-size: 16px;
+  line-height: 1;
+  margin-bottom: 7px;
+  color: var(--clr-common-text);
+}
+
+.artist-created {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-likes {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-follwers {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-followed {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-art-collection {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-art-featured {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-art-sold {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-art-bids {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-common-heading);
+  line-height: 1;
+}
+
+.artist-meta-item-border {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    background: var(--clr-common-border);
+    top: -1px;
+    right: -25px;
+
+    @media #{$xl} {
+      right: -18px;
+    }
+
+    @media #{$sm} {
+      right: -20px;
+    }
+
+    @media #{$xsl} {
+      right: -75px;
+    }
+  }
+}
+
+.tag-featured {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--clr-common-white);
+  background: var(--clr-theme-2);
+  height: 30px;
+  line-height: 30px;
+  border-radius: 15px;
+  padding: 0px 12px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: inline-flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.tag-featured i {
+  margin-right: 5px;
+  font-size: 13px;
+}
+
+// top-creator style
+.creator-single-short {
+  transition: 0.3s;
+  border-radius: 0px;
+}
+
+.creator-single-short.creator-single-filled {
+  background: var(--clr-common-white);
+  padding: 30px 30px;
+  border-radius: 10px;
+  min-height: calc(100% - 30px);
+}
+
+.creator-short-content {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  text-align: inherit;
+  border-radius: 10px;
+  padding: 0 0;
+  background: none;
+  border: none;
+
+  .creator-info .artist-id {
+    font-weight: 400;
+  }
+
+  .creator-info .artist-name {
+    padding-right: 18px;
+  }
+
+  .profile-img {
+    img {
+      width: 70px;
+      border-width: 4px;
+    }
+  }
+
+  .profile-verification {
+    right: 0;
+    bottom: 4px;
+    width: 12px;
+    height: 12px;
+    border: 0;
+    line-height: 12px;
+    font-size: 6px;
+  }
+
+  .creator-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+    margin-top: 0;
+    align-items: flex-start;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    .follow-artist {
+      height: 40px;
+      line-height: 38px;
+      padding: 0 15px;
+      padding-left: 15px;
+      padding-left: 30px;
+      background: var(--clr-common-white);
+      color: var(--clr-common-white);
+      background-image: linear-gradient(to right, #2b81ff, #7237ff, #2b81ff);
+      background-size: 200% 100%;
+
+      &:before {
+        left: 14px;
+        color: var(--clr-common-white);
+      }
+
+      &.followed {
+        background: var(--clr-common-white);
+        color: var(--clr-common-text);
+        border: 1px solid var(--clr-common-border);
+
+        &:before {
+          content: "";
+          color: var(--clr-common-text);
+        }
+      }
+    }
+  }
+
+  .artist-created {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--clr-common-text);
+    display: inline;
+    margin-right: 5px;
+  }
+
+  .artist-meta-type {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--clr-common-text);
+    display: inline;
+  }
+
+  .artist-follwers {
+    font-size: 14px;
+  }
+
+  .artist-meta-item-border {
+    &:after {
+      top: 0;
+      left: -20px;
+
+      @media #{$xl} {
+        left: -12px;
+      }
+    }
+  }
+
+  .artist-meta-item-follower {
+    padding-top: 18px;
+    padding-bottom: 10px;
+  }
+}
+
+// new style
+
+.creator-cover-img img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  height: 150px;
+  object-fit: cover;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.profile-verification {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--clr-common-white);
+  background: var(--clr-common-orange);
+  text-align: center;
+  line-height: 18px;
+  border-radius: 50%;
+  color: var(--clr-common-white);
+  font-size: 8px;
+  position: absolute;
+  right: 120px;
+  bottom: 0;
+}
+
+.profile-verification.verified {
+  background: var(--clr-common-blue);
+}
+
+.artist-name i {
+  color:var(--clr-common-orange);
+}
+.vendor_ratting i {
+  color:var(--clr-common-orange);
+}
+.vendor_card_with_img {
+  position: relative;
+}
+.vendor_card_with_img .profile-verification.verified {
+  position: absolute;
+  background: var(--clr-common-blue);
+  right: 0;
+}
+.contact-from-input .list{
+  width: 100%;
+}
+.oction-creator-profile-img img{
+  background: var(--clr-common-black);
+}
+.vendor_card_with_img img {
+	background: var(--clr-common-black);
+  border: 2px solid var(--clr-common-text);
+}
+
+
+//vendor profile styles
+.vendor_logo {
+  @media #{$lg,$md,$sm, $xs} {
+    text-align: center;
+    .vendor_card_with_img {
+      display: inline-block;
+    }
+  }
+}
+.vendor_description {
+  @media #{$lg,$md,$sm, $xs} {
+    border: 0px;
+    text-align: center;
+  }
+}
+.vendor_social-wrap {
+  @media #{$lg,$md,$sm, $xs} {
+    text-align: center;
+    .vendor_social {
+      display: inline-flex;
+    }
+  }
+}
+.product-quantity-cart {
+  .fill-btn {
+    @media #{$xs} {
+      text-align: center;
+      .vendor_social {
+        padding: 0px 30px;
+      }
+    }
+  }
+}
+.product__modal-wrapper {
+  @media #{$xs} {
+	  padding: 30px 10px;
+  }
+}
+
