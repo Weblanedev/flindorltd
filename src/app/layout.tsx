@@ -1,15 +1,16 @@
 if (typeof window !== "undefined") {
-  require("bootstrap/dist/js/bootstrap")
-};
+  require("bootstrap/dist/js/bootstrap");
+}
 import "../style/index.scss";
-import './globals.css';
-import AppProvider from '@/contextApi/AppProvider';
-import ReduxProvider from '@/redux/provider';
+import "./globals.css";
+import AppProvider from "@/contextApi/AppProvider";
+import { ProductsProvider } from "@/contextApi/ProductsProvider";
+import ReduxProvider from "@/redux/provider";
 import { Toaster } from "sonner";
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode 
+  children: React.ReactNode;
 }) {
   return (
     <>
@@ -23,18 +24,21 @@ export default function RootLayout({
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           <link rel="icon" href="/favicon.ico" />
-          <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+          ></link>
         </head>
 
         <body suppressHydrationWarning={true}>
           <ReduxProvider>
             <AppProvider>
-              {children}
+              <ProductsProvider>{children}</ProductsProvider>
             </AppProvider>
-             <Toaster position="top-center" richColors/>
+            <Toaster position="top-center" richColors />
           </ReduxProvider>
         </body>
       </html>
     </>
-  )
+  );
 }

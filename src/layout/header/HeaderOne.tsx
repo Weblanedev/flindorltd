@@ -1,14 +1,17 @@
-import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
-import logoImg from '../../../public/assets/img/logo/logo.svg';
-import Image from 'next/image';
-import Menu from './components/Menu';
-import useGlobalContext from '@/hooks/use-context';
+import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
+import logoImg from "../../../public/assets/img/logo/logo.svg";
+import Image from "next/image";
+import Menu from "./components/Menu";
+import useGlobalContext from "@/hooks/use-context";
+import CartIcon from "@/svg/CartIcon";
+import { useTotalProductCount } from "@/hooks/useCartQuantity";
 
 const HeaderOne = () => {
   const searchRef = useRef(null);
   const { toggleSideMenu, scrollDirection } = useGlobalContext();
   const [_, setOpenCategory] = useState<boolean>(false);
+  const totalCart = useTotalProductCount();
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const currentRef = searchRef.current as HTMLElement | null;
@@ -20,9 +23,9 @@ const HeaderOne = () => {
         setOpenCategory(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -32,7 +35,7 @@ const HeaderOne = () => {
         <div
           id="header-sticky"
           className={`header-main header-main1 ${
-            scrollDirection === 'down' ? 'sticky' : ''
+            scrollDirection === "down" ? "sticky" : ""
           }`}
         >
           <div className="container">
@@ -51,6 +54,19 @@ const HeaderOne = () => {
                       <nav id="mobile-menu">
                         <Menu />
                       </nav>
+                    </div>
+
+                    <div className="action-list d-none d-lg-flex ml-20">
+                      <div className="action-item action-item-cart">
+                        <Link href="/cart" className="view-cart-button">
+                          <CartIcon />
+                          {totalCart > 0 && (
+                            <span className="action-item-number">
+                              {totalCart}
+                            </span>
+                          )}
+                        </Link>
+                      </div>
                     </div>
 
                     <div className="menu-bar ecomart-menu-bar d-lg-none ml-20">

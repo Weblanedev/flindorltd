@@ -1,15 +1,15 @@
 // import useGlobalContext from '@/hooks/use-context';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import img1 from '../../../public/assets/img/portfolio/p1.jpg';
-import img2 from '../../../public/assets/img/portfolio/p2.jpg';
-import img3 from '../../../public/assets/img/portfolio/p3.png';
-import img4 from '../../../public/assets/img/portfolio/p4.png';
-import img5 from '../../../public/assets/img/portfolio/p5.png';
-import img6 from '../../../public/assets/img/portfolio/p6.png';
-import logo from '../../../public/assets/img/logo/white-logo.png';
-import SocialIcon from '../social-icon/SocialIcon';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import img1 from "../../../public/assets/img/portfolio/p1.jpg";
+import img2 from "../../../public/assets/img/portfolio/p2.jpg";
+import img3 from "../../../public/assets/img/portfolio/p3.png";
+import img4 from "../../../public/assets/img/portfolio/p4.png";
+import img5 from "../../../public/assets/img/portfolio/p5.png";
+import img6 from "../../../public/assets/img/portfolio/p6.png";
+import logo from "../../../public/assets/img/logo/logo.svg";
+import SocialIcon from "../social-icon/SocialIcon";
 
 type TSidebarProps = {
   isOpenInfoSidebar: boolean;
@@ -23,7 +23,7 @@ const InfoSidebar = ({
   return (
     <>
       <div
-        className={isOpenInfoSidebar ? 'extra-info info-open' : 'extra-info'}
+        className={isOpenInfoSidebar ? "extra-info info-open" : "extra-info"}
       >
         <div className="close-icon">
           <button onClick={() => setIsOpenInfoSidebar(!isOpenInfoSidebar)}>
@@ -34,7 +34,7 @@ const InfoSidebar = ({
           <Link href="/">
             <Image
               src={logo}
-              style={{ height: 'auto', width: 'auto' }}
+              style={{ height: "auto", width: "auto" }}
               alt="image not found"
             />
           </Link>
@@ -65,42 +65,42 @@ const InfoSidebar = ({
           <Link href="#">
             <Image
               src={img1}
-              style={{ height: 'auto', width: 'auto' }}
+              style={{ height: "auto", width: "auto" }}
               alt="image not found"
             />
           </Link>
           <Link href="#">
             <Image
               src={img2}
-              style={{ height: 'auto', width: 'auto' }}
+              style={{ height: "auto", width: "auto" }}
               alt="image not found"
             />
           </Link>
           <Link href="#">
             <Image
               src={img3}
-              style={{ height: 'auto', width: 'auto' }}
+              style={{ height: "auto", width: "auto" }}
               alt="image not found"
             />
           </Link>
           <Link href="#">
             <Image
               src={img4}
-              style={{ height: 'auto', width: 'auto' }}
+              style={{ height: "auto", width: "auto" }}
               alt="image not found"
             />
           </Link>
           <Link href="#">
             <Image
               src={img5}
-              style={{ height: 'auto', width: 'auto' }}
+              style={{ height: "auto", width: "auto" }}
               alt="image not found"
             />
           </Link>
           <Link href="#">
             <Image
               src={img6}
-              style={{ height: 'auto', width: 'auto' }}
+              style={{ height: "auto", width: "auto" }}
               alt="image not found"
             />
           </Link>

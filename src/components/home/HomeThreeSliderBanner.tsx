@@ -1,42 +1,49 @@
-'use client';
-import React, { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper';
-import 'swiper/css/bundle';
-import banner7 from '../../../public/assets/img/category_banner/goods.jpg';
-import shape8 from '../../../public/assets/img/slider-img/shape/shape-8.png';
-import shape9 from '../../../public/assets/img/slider-img/shape/shape-9.png';
-import Link from 'next/link';
-import Image from 'next/image';
+"use client";
+import React, { useState, useMemo } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination, EffectFade } from "swiper";
+import "swiper/css/bundle";
+import { useProductsContext } from "@/contextApi/ProductsProvider";
+import shape8 from "../../../public/assets/img/slider-img/shape/shape-8.png";
+import shape9 from "../../../public/assets/img/slider-img/shape/shape-9.png";
+import Link from "next/link";
+import Image from "next/image";
+
 const HomeThreeSliderBanner = () => {
-  const [activeIndex, setActiveIndex] = useState(0); // State to track active slide index
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { products } = useProductsContext();
+
+  const sliderData = useMemo(() => {
+    const goods = products.filter((p) => p.category !== "Services").slice(0, 3);
+    if (goods.length === 0) {
+      return [
+        {
+          id: 1,
+          bgImg: "https://via.placeholder.com/800x600?text=Shop+Now",
+          tagOne: "Reliable",
+          tagTwo: "General Goods And Services",
+          text: "We provide reliable and high-quality general goods and services to our customers.",
+        },
+      ];
+    }
+    return goods.map((p, i) => ({
+      id: p.id,
+      bgImg:
+        typeof p.productImg === "string"
+          ? p.productImg
+          : (p.productImg as { src: string }).src,
+      tagOne: i === 0 ? "Reliable" : i === 1 ? "On Trending" : "Featured",
+      tagTwo: p.title,
+      text:
+        p.description?.slice(0, 120) +
+          (p.description && p.description.length > 120 ? "…" : "") ||
+        "Shop our collection.",
+    }));
+  }, [products]);
 
   const handleSlideChange = (swiper: any) => {
-    setActiveIndex(swiper.realIndex); // Update activeIndex state when slide changes
+    setActiveIndex(swiper.realIndex);
   };
-  const sliderData = [
-    {
-      id: 1,
-      bgImg: banner7,
-      tagOne: 'Reliable',
-      tagTwo: 'General Goods And Services',
-      text: 'We provide reliable and high-quality general goods and services to our customers, ensuring they have access to the necessary products and services for their needs.',
-    },
-    // {
-    //   id: 2,
-    //   bgImg: banner8,
-    //   tagOne: "On Trending",
-    //   tagTwo: "Autumn Fashion For Man",
-    //   text: "Embrace the essence of autumn with our meticulously crafted collection for men. From cozy knits to stylish outerwear, find your autumn essentials to stay fashionable and comfortable."
-    // },
-    // {
-    //   id: 3,
-    //   bgImg: banner9,
-    //   tagOne: "Featured Product",
-    //   tagTwo: "Perfect Fashion Unique Dress",
-    //   text: "Discover the epitome of style with our featured unique dresses, designed to make a statement. Find the perfect dress that complements your personality and sets you apart."
-    // },
-  ];
 
   return (
     <>
@@ -58,14 +65,14 @@ const HomeThreeSliderBanner = () => {
         <div className="slider__active">
           <Swiper
             modules={[Autoplay, Navigation, Pagination, EffectFade]}
-            effect={'fade'}
+            effect={"fade"}
             onSlideChange={handleSlideChange}
             navigation={{
-              nextEl: '.slider-button-prev',
-              prevEl: '.slider-button-next',
+              nextEl: ".slider-button-prev",
+              prevEl: ".slider-button-next",
             }}
             pagination={{
-              el: '.slider2-pagination',
+              el: ".slider2-pagination",
               clickable: true,
             }}
             // autoplay={{
@@ -88,10 +95,7 @@ const HomeThreeSliderBanner = () => {
                             <h1 className="banner-title">{item?.tagTwo}</h1>
                             <p className="mb-40">{item?.text}</p>
                             <div className="banner-btn">
-                              <Link
-                                className="fill-btn"
-                                href="/shop-sidebar-5-column"
-                              >
+                              <Link className="fill-btn" href="/products">
                                 Shop Now
                               </Link>
                             </div>
@@ -102,7 +106,17 @@ const HomeThreeSliderBanner = () => {
                             {/* <span className="linear-shape"></span>
                             <div className="banner-bg-shape"></div> */}
                             <div className="banner-thumb-3">
-                              <Image src={item?.bgImg} alt="banner-7" />
+                              <Image
+                                src={item?.bgImg}
+                                alt={item?.tagTwo ?? "Banner"}
+                                width={800}
+                                height={600}
+                                style={{
+                                  width: "100%",
+                                  height: "auto",
+                                  objectFit: "cover",
+                                }}
+                              />
                             </div>
                           </div>
                         </div>

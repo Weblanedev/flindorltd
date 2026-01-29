@@ -27,14 +27,14 @@ const SliderProductCard = ({ item }: propsType) => {
     setImgIndex(
       (prevIndex) =>
         (prevIndex - 1 + itm.productColorArray.length) %
-        itm.productColorArray.length
+        itm.productColorArray.length,
     );
     setProductImg(itm.productColorArray[imgIndex].activeImg);
   };
 
-  const status = item?.status ? item?.status : ''
+  const status = item?.status ? item?.status : "";
 
-  const tagClass = getTagClass(status)
+  const tagClass = getTagClass(status);
 
   return (
     <>
@@ -42,6 +42,8 @@ const SliderProductCard = ({ item }: propsType) => {
         <div className="product-image pos-rel">
           <Link href={`/shop-details/${item.id}`} className="">
             <Image
+              width={600}
+              height={600}
               style={{ width: "100%", height: "auto" }}
               src={productImg ? productImg : item?.productImg}
               alt="img"
@@ -117,10 +119,12 @@ const SliderProductCard = ({ item }: propsType) => {
             <Link href={`/shop-details/${item.id}`}>{item.title}</Link>
           </div>
           <div className="product-price">
-            <span className="price-now">£{item?.price}.00</span>
+            <span className="price-now">₦{item?.price?.toLocaleString()}</span>
             {item?.oldPrice ? (
               <>
-                <span className="price-old">£{item?.oldPrice}.00</span>
+                <span className="price-old">
+                  ₦{item?.oldPrice?.toLocaleString()}
+                </span>
               </>
             ) : (
               <></>

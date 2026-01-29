@@ -1,4 +1,4 @@
-import { products_data } from "@/data/products-data";
+import { useProductsContext } from "@/contextApi/ProductsProvider";
 import useGlobalContext from "./use-context";
 
 export const useFilter = (start: number, end: number) => {
@@ -11,7 +11,8 @@ export const useFilter = (start: number, end: number) => {
     selectData,
     filterRange,
   } = useGlobalContext();
-  const filteredData = products_data?.filter((item) => {
+  const { products } = useProductsContext();
+  const filteredData = products?.filter((item) => {
     let passesCategory = true;
     let passesBrand = true;
     let passesColor = true;
@@ -68,7 +69,7 @@ export const useFilter = (start: number, end: number) => {
     );
   });
 
-  const filterByColor = products_data?.filter(
+  const filterByColor = products?.filter(
     (item) =>
       item.productColorArray &&
       item.productColorArray.some((color) => color.color === filterColor)

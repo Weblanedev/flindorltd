@@ -1,33 +1,52 @@
-import React from 'react';
-
-// import banner1 from '../../../public/assets/img/category_banner/category-banner1.jpg';
-import Image from 'next/image';
-import Link from 'next/link';
-import menu_data from '@/data/menu-data';
+"use client";
+import React, { useMemo } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useProductsContext } from "@/contextApi/ProductsProvider";
 
 const CategoryBanner = () => {
-  const banners = [
-    {
-      img: '/assets/img/category_banner/household_stuff.jpg',
-      title: menu_data[1].submenus?.[0].title,
-      desc: 'Discover the latest collection of household items',
-    },
-    {
-      img: '/assets/img/category_banner/parenting.png',
-      title: menu_data[1].submenus?.[1].title,
-      desc: 'Explore our collection of parenting essentials',
-    },
-    {
-      img: '/assets/img/category_banner/tools.png',
-      title: menu_data[1].submenus?.[2].title,
-      desc: 'Browse our selection of tools and gadgets',
-    },
-    {
-      img: '/assets/img/category_banner/household_items.jpg',
-      title: menu_data[1].submenus?.[3].title,
-      desc: 'Find the perfect home decor for your needs',
-    },
-  ];
+  const { products } = useProductsContext();
+
+  const banners = useMemo(() => {
+    const goods = products.filter((p) => p.category !== "Services");
+    const fallbacks = [
+      {
+        img: "https://via.placeholder.com/400x300?text=Household",
+        title: "Household",
+        desc: "Discover our collection",
+      },
+      {
+        img: "https://via.placeholder.com/400x300?text=Electronics",
+        title: "Electronics",
+        desc: "Explore electronics",
+      },
+      {
+        img: "https://via.placeholder.com/400x300?text=Kitchen",
+        title: "Kitchen",
+        desc: "Kitchen accessories",
+      },
+      {
+        img: "https://via.placeholder.com/400x300?text=Decor",
+        title: "Decor",
+        desc: "Home decor",
+      },
+    ];
+    return Array.from({ length: 4 }, (_, i) => {
+      const p = goods[i];
+      if (!p) return fallbacks[i];
+      return {
+        img:
+          typeof p.productImg === "string"
+            ? p.productImg
+            : (p.productImg as { src: string }).src,
+        title: p.category || fallbacks[i].title,
+        desc:
+          p.description?.slice(0, 60) +
+            (p.description && p.description.length > 60 ? "…" : "") ||
+          fallbacks[i].desc,
+      };
+    });
+  }, [products]);
 
   return (
     <>
@@ -44,38 +63,35 @@ const CategoryBanner = () => {
                 <div className="category-banner-single pos-rel h-100">
                   <div className="category-banner-img h-100">
                     <Image
-                      width={1000}
-                      height={1000}
+                      width={400}
+                      height={300}
                       style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
                       }}
                       src={banner.img}
-                      alt="banner-img"
+                      alt={banner.title}
                     />
                     <div
                       style={{
-                        position: 'absolute',
+                        position: "absolute",
                         top: 0,
                         left: 0,
-                        width: '100%',
-                        height: '100%',
+                        width: "100%",
+                        height: "100%",
                         background:
-                          'linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent)',
+                          "linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent)",
                       }}
                     ></div>
                   </div>
                   <div className="category-banner-inner">
                     <div className="category-banner-content text-white">
-                      <Link
-                        href="/shop-sidebar-5-column"
-                        className="product-category"
-                      >
+                      <Link href="/products" className="product-category">
                         {banner.title}
                       </Link>
                       <p className="category-short-desc">{banner.desc}</p>
-                      <Link href="/contact" className="border-btn">
+                      <Link href="/products" className="border-btn">
                         Shop Now
                       </Link>
                     </div>

@@ -1,9 +1,34 @@
-import React from "react";
+"use client";
+import React, { useMemo } from "react";
 import SingleProductCard from "../SharedComponents/SingleProductCard";
-import { products_data } from "@/data/products-data";
+import { useProductsContext } from "@/contextApi/ProductsProvider";
 import Link from "next/link";
 
 const ProductArea = () => {
+  const { products } = useProductsContext();
+  const goods = products.filter((p) => p.category !== "Services");
+
+  // Filter products by tags
+  const bestSellers = useMemo(
+    () => goods.filter((p) => p.tags?.includes("best-seller")).slice(0, 15),
+    [goods],
+  );
+
+  const hotCollection = useMemo(
+    () => goods.filter((p) => p.tags?.includes("hot-collection")).slice(0, 15),
+    [goods],
+  );
+
+  const trendy = useMemo(
+    () => goods.filter((p) => p.tags?.includes("trendy")).slice(0, 15),
+    [goods],
+  );
+
+  const newArrival = useMemo(
+    () => goods.filter((p) => p.tags?.includes("new-arrival")).slice(0, 15),
+    [goods],
+  );
+
   return (
     <>
       <section className="product-area pt-120 pb-120">
@@ -31,7 +56,10 @@ const ProductArea = () => {
                     aria-controls="best-seller"
                     aria-selected="true"
                   >
-                    Best Seller <span className="total-product">[57]</span>
+                    Best Seller{" "}
+                    <span className="total-product">
+                      [{bestSellers.length}]
+                    </span>
                   </button>
                   <button
                     className="nav-link"
@@ -43,7 +71,10 @@ const ProductArea = () => {
                     aria-controls="hot-collection"
                     aria-selected="false"
                   >
-                    Hot Collection <span className="total-product">[25]</span>
+                    Hot Collection{" "}
+                    <span className="total-product">
+                      [{hotCollection.length}]
+                    </span>
                   </button>
                   <button
                     className="nav-link"
@@ -55,7 +86,8 @@ const ProductArea = () => {
                     aria-controls="trend"
                     aria-selected="false"
                   >
-                    Trendy <span className="total-product">[32]</span>
+                    Trendy{" "}
+                    <span className="total-product">[{trendy.length}]</span>
                   </button>
                   <button
                     className="nav-link"
@@ -67,42 +99,95 @@ const ProductArea = () => {
                     aria-controls="new-arrival"
                     aria-selected="false"
                   >
-                    New Arrival<span className="total-product">[64]</span>
+                    New Arrival
+                    <span className="total-product">[{newArrival.length}]</span>
                   </button>
                 </div>
               </nav>
             </div>
             <div className="product-tab-content">
               <div className="tab-content" id="nav-tabContent">
-                <div className="tab-pane fade show active" id="best-seller" role="tabpanel" aria-labelledby="best-seller-tab">
+                <div
+                  className="tab-pane fade show active"
+                  id="best-seller"
+                  role="tabpanel"
+                  aria-labelledby="best-seller-tab"
+                >
                   <div className="products-wrapper">
-                    {products_data?.slice(0, 15)?.map((item) => (
-                      <SingleProductCard key={item.id} item={item} />
-                    ))}
+                    {bestSellers.length > 0 ? (
+                      bestSellers.map((item) => (
+                        <SingleProductCard key={item.id} item={item} />
+                      ))
+                    ) : (
+                      <div className="text-center py-20">
+                        <p className="text-gray-600 text-lg">
+                          No best sellers available.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
                 {/* hot collection */}
-                <div className="tab-pane fade" id="hot-collection" role="tabpanel" aria-labelledby="hot-collection-tab">
+                <div
+                  className="tab-pane fade"
+                  id="hot-collection"
+                  role="tabpanel"
+                  aria-labelledby="hot-collection-tab"
+                >
                   <div className="products-wrapper">
-                    {products_data?.slice(15, 25)?.map((item) => (
-                      <SingleProductCard key={item.id} item={item} />
-                    ))}
+                    {hotCollection.length > 0 ? (
+                      hotCollection.map((item) => (
+                        <SingleProductCard key={item.id} item={item} />
+                      ))
+                    ) : (
+                      <div className="text-center py-20">
+                        <p className="text-gray-600 text-lg">
+                          No hot collection items available.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
                 {/* trendy collection */}
-                <div className="tab-pane fade" id="trend" role="tabpanel" aria-labelledby="trend-tab">
+                <div
+                  className="tab-pane fade"
+                  id="trend"
+                  role="tabpanel"
+                  aria-labelledby="trend-tab"
+                >
                   <div className="products-wrapper">
-                    {products_data?.slice(10, 20)?.map((item) => (
-                      <SingleProductCard key={item.id} item={item} />
-                    ))}
+                    {trendy.length > 0 ? (
+                      trendy.map((item) => (
+                        <SingleProductCard key={item.id} item={item} />
+                      ))
+                    ) : (
+                      <div className="text-center py-20">
+                        <p className="text-gray-600 text-lg">
+                          No trendy items available.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
                 {/* New Arrival */}
-                <div className="tab-pane fade" id="new-arrival" role="tabpanel" aria-labelledby="new-arrival-tab">
+                <div
+                  className="tab-pane fade"
+                  id="new-arrival"
+                  role="tabpanel"
+                  aria-labelledby="new-arrival-tab"
+                >
                   <div className="products-wrapper">
-                    {products_data?.slice(18, 28)?.map((item) => (
-                      <SingleProductCard key={item.id} item={item} />
-                    ))}
+                    {newArrival.length > 0 ? (
+                      newArrival.map((item) => (
+                        <SingleProductCard key={item.id} item={item} />
+                      ))
+                    ) : (
+                      <div className="text-center py-20">
+                        <p className="text-gray-600 text-lg">
+                          No new arrivals available.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -111,7 +196,7 @@ const ProductArea = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="product-area-btn mt-10 text-center">
-                <Link href="/shop-sidebar-5-column" className="border-btn">
+                <Link href="/products" className="border-btn">
                   View All Products
                 </Link>
               </div>

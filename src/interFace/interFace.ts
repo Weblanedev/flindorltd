@@ -64,7 +64,7 @@ export interface ProductsType {
   status?: string;
   discount?: number;
   price: number;
-  productImg: StaticImageData;
+  productImg: StaticImageData | string;
   oldPrice?: number;
   primaryColor: string;
   productColor: boolean;
@@ -73,6 +73,8 @@ export interface ProductsType {
   totalCart?: number;
   totalProduct?: number;
   productVideo?: string;
+  description?: string;
+  tags?: string[]; // Product labels: 'best-seller', 'hot-collection', 'trendy', 'new-arrival'
 }
 
 // combo package type

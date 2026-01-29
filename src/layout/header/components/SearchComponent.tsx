@@ -84,18 +84,27 @@ const SearchComponent = () => {
           <i className="fal fa-search"></i>
         </button>
         <div
-          className={`search-result-inner ${openSearchBox ? "open_search_box search_wrapper" : ""
-            }`}
+          className={`search-result-inner ${
+            openSearchBox ? "open_search_box search_wrapper" : ""
+          }`}
         >
           <div className="search-result-l">
             {searchData?.length ? (
               <>
                 {searchData?.map((item, index) => {
                   return (
-                    <div key={index} className="search_product header_search_three">
+                    <div
+                      key={index}
+                      className="search_product header_search_three"
+                    >
                       <div className="ecomart-common-search-result">
                         <div className="preview_img">
-                          <Image src={item?.productImg} alt="img" />
+                          <Image
+                            src={item?.productImg}
+                            alt="img"
+                            width={80}
+                            height={80}
+                          />
                         </div>
                         <div className="preview_content">
                           <div className="single_product">
@@ -104,11 +113,13 @@ const SearchComponent = () => {
                             </Link>
                           </div>
                           <div className="product-price">
-                            <span className="price-now">£{item?.price}.00</span>
+                            <span className="price-now">
+                              ₦{item?.price?.toLocaleString()}
+                            </span>
                             {item?.oldPrice ? (
                               <>
                                 <span className="price-old">
-                                  £{item?.oldPrice}.00
+                                  ₦{item?.oldPrice?.toLocaleString()}
                                 </span>
                               </>
                             ) : (

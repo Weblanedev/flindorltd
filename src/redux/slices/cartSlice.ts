@@ -88,6 +88,9 @@ export const cartSlice = createSlice({
         state.cartProducts = [];
       }
     },
+    reset_cart: (state) => {
+      state.cartProducts = [];
+    },
 
     decrease_quantity: (state, { payload }: PayloadAction<ProductsType>) => {
       const cartIndex = state.cartProducts.findIndex(
@@ -116,6 +119,7 @@ export const {
   cart_group_product,
   remove_cart_product,
   clear_cart,
+  reset_cart,
   decrease_quantity,
 } = cartSlice.actions;
 

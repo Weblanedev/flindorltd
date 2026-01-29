@@ -91,11 +91,19 @@ const SearchHeaderOne = () => {
               <>
                 {searchData?.map((item, index) => {
                   return (
-                    <div key={index} className="search_product header_search_one">
+                    <div
+                      key={index}
+                      className="search_product header_search_one"
+                    >
                       <div className="ecomart-common-search-result">
-                          <div className="preview_img">
-                            <Image src={item?.productImg} alt="img" />
-                          </div>
+                        <div className="preview_img">
+                          <Image
+                            src={item?.productImg}
+                            alt="img"
+                            width={80}
+                            height={80}
+                          />
+                        </div>
                         <div className="preview_content">
                           <div className="single_product">
                             <Link href={`/shop-details/${item.id}`}>
@@ -103,11 +111,13 @@ const SearchHeaderOne = () => {
                             </Link>
                           </div>
                           <div className="product-price">
-                            <span className="price-now">£{item?.price}.00</span>
+                            <span className="price-now">
+                              ₦{item?.price?.toLocaleString()}
+                            </span>
                             {item?.oldPrice ? (
                               <>
                                 <span className="price-old">
-                                  £{item?.oldPrice}.00
+                                  ₦{item?.oldPrice?.toLocaleString()}
                                 </span>
                               </>
                             ) : (

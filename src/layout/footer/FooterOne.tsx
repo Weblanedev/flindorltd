@@ -1,10 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import logoImg from '../../../public/assets/img/logo/logo.svg';
-import menu_data from '@/data/menu-data';
-import socials_data from '@/data/social-data';
-import contact_data from '@/data/contact-data';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import logoImg from "../../../public/assets/img/logo/logo.svg";
+import menu_data from "@/data/menu-data";
+import socials_data from "@/data/social-data";
+import contact_data from "@/data/contact-data";
 
 const FooterOne = () => {
   return (
@@ -19,7 +19,7 @@ const FooterOne = () => {
             </div>
             <div className="row justify-content-end">
               {menu_data
-                .filter(item => item.submenus)
+                .filter((item) => item.submenus)
                 .map(({ title, submenus }, i) => (
                   <div className="col-lg-3 col-md-6 col-sm-6" key={i}>
                     <div className="footer-widget footer1-widget footer1-widget1 mb-40">
@@ -42,11 +42,11 @@ const FooterOne = () => {
                     <h4>Contact</h4>
                   </div>
                   <p className="mb-20">
-                    Phone:{' '}
+                    Phone:{" "}
                     <Link href="tel:555-900-888">{contact_data.phone[0]}</Link>
                   </p>
                   <p>
-                    Email:{' '}
+                    Email:{" "}
                     <Link href="mailto:info@example.com">
                       {contact_data.email[0]}
                     </Link>
@@ -61,18 +61,18 @@ const FooterOne = () => {
           <div className="container">
             <div className="copyright1-inner">
               <div className="copyright-text copyright1-text">
-                Copyright {new Date().getFullYear()} by{' '}
+                Copyright {new Date().getFullYear()} by{" "}
                 <Link href="/">{contact_data.name}</Link>. All Rights Reserved
               </div>
               <div className="copyright-link">
-                <Link href="/" className="text-btn">
+                <Link href="/privacy" className="text-btn">
                   Privacy Policy
                 </Link>
-                <Link href="/" className="text-btn">
-                  Terms & Conditions
+                <Link href="/refund" className="text-btn">
+                  Refund & Return Policy
                 </Link>
               </div>
-              <div className="social-wrapper">
+              {/* <div className="social-wrapper">
                 <p>Follow Us:</p>
                 <div className="social__links">
                   <ul>
@@ -85,7 +85,7 @@ const FooterOne = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

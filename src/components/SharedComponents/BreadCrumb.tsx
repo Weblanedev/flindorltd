@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
-import bgImg from '../../../public/assets/img/category_banner/household_items.jpg';
+import Link from "next/link";
+import React from "react";
 
 interface propsType {
   title: string;
@@ -12,17 +11,17 @@ const BreadCrumb = ({ title }: propsType) => {
       <section
         className="page-title-area position-relative"
         style={{
-          backgroundImage: `url(${bgImg.src})`,
+          background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
         }}
       >
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
             zIndex: 1,
           }}
         ></div>

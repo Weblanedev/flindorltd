@@ -1,24 +1,25 @@
-'use client';
-import { products_data } from '@/data/products-data';
-import { getColorClass } from '@/hooks/condition-class';
-import useGlobalContext from '@/hooks/use-context';
-import { ProductsType } from '@/interFace/interFace';
-import { cart_product, decrease_quantity } from '@/redux/slices/cartSlice';
-import { RootState } from '@/redux/store';
-import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+"use client";
+import { useProductsContext } from "@/contextApi/ProductsProvider";
+import { getColorClass } from "@/hooks/condition-class";
+import useGlobalContext from "@/hooks/use-context";
+import { ProductsType } from "@/interFace/interFace";
+import { cart_product, decrease_quantity } from "@/redux/slices/cartSlice";
+import { RootState } from "@/redux/store";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import ProductInfo from "../shop-details/ProductInfo";
-import GetRatting from '@/hooks/GetRatting';
-import TimerWrapper from '@/utils/TimerWrapper';
+import GetRatting from "@/hooks/GetRatting";
+import TimerWrapper from "@/utils/TimerWrapper";
 const ProductModal = () => {
   const dispatch = useDispatch();
   const { dynamicId } = useGlobalContext();
+  const { products } = useProductsContext();
   const [activeImg, setActiveImg] = useState(0);
   const [productImg, setProductImg] = useState<StaticImageData>();
-  const item = products_data?.find(itm => itm.id == dynamicId) as ProductsType;
+  const item = products?.find((itm) => itm.id == dynamicId) as ProductsType;
   const [sizeNumber, setSizeNumber] = useState<number>(0);
   const [size, setSize] = useState<string>(item?.sizeArray?.[0] as string);
   // const handleChange = (e: any) => {};
@@ -28,9 +29,9 @@ const ProductModal = () => {
   };
 
   const cartProducts = useSelector(
-    (state: RootState) => state.cart.cartProducts
+    (state: RootState) => state.cart.cartProducts,
   );
-  const quantity = cartProducts.find(itm => itm?.id === item?.id);
+  const quantity = cartProducts.find((itm) => itm?.id === item?.id);
   const totalCart = quantity?.totalCart ? quantity?.totalCart : 0;
 
   const handleActiveSize = (itm: string, id: number) => {
@@ -92,7 +93,7 @@ const ProductModal = () => {
                                             <div
                                               key={index}
                                               className={`tab-pane fade prodcut_bg ${
-                                                index === 0 ? 'active show' : ''
+                                                index === 0 ? "active show" : ""
                                               }`}
                                               id={colorProduct?.color}
                                               role="tabpanel"
@@ -108,7 +109,7 @@ const ProductModal = () => {
                                                 alt="product-img"
                                               />
                                             </div>
-                                          )
+                                          ),
                                         )}
                                       </>
                                     ) : (
@@ -140,7 +141,7 @@ const ProductModal = () => {
                                     {item?.productColorArray?.map(
                                       (colorItems, index) => {
                                         const dynamicColor = getColorClass(
-                                          colorItems.color
+                                          colorItems.color,
                                         );
                                         return (
                                           <li
@@ -150,8 +151,8 @@ const ProductModal = () => {
                                             key={index}
                                             className={`${dynamicColor} ${
                                               activeImg === index
-                                                ? 'active'
-                                                : ''
+                                                ? "active"
+                                                : ""
                                             }`}
                                           >
                                             <Image
@@ -160,7 +161,7 @@ const ProductModal = () => {
                                             />
                                           </li>
                                         );
-                                      }
+                                      },
                                     )}
                                   </ul>
                                 </>
@@ -176,16 +177,19 @@ const ProductModal = () => {
                               {item?.title}
                             </h4>
                             <span className="product-price mr-1">
-                              ${item?.price}.00
+                              ₦{item?.price?.toLocaleString()}
                             </span>
                             {item?.oldPrice ? (
                               <>
                                 <span className="price-old">
-                                  £{item?.oldPrice}.00
-                                </span>{' '}
+                                  ₦{item?.oldPrice?.toLocaleString()}
+                                </span>{" "}
                                 <span className="save_message">
-                                  You Save ${item?.oldPrice - item?.price} (
-                                  {item?.discount}
+                                  You Save ₦
+                                  {(
+                                    item?.oldPrice - item?.price
+                                  )?.toLocaleString()}{" "}
+                                  ({item?.discount}
                                   %)
                                 </span>
                               </>
@@ -203,15 +207,15 @@ const ProductModal = () => {
                             <div className="prodcut_category_brand mt-30">
                               <ul>
                                 <li>
-                                  {' '}
-                                  Brand:{' '}
+                                  {" "}
+                                  Brand:{" "}
                                   <span className="text-success">
                                     {item?.brand},
-                                  </span>{' '}
-                                  Category:{' '}
+                                  </span>{" "}
+                                  Category:{" "}
                                   <span className="text-success">
                                     {item?.category}
-                                  </span>{' '}
+                                  </span>{" "}
                                 </li>
                               </ul>
                             </div>
@@ -221,7 +225,7 @@ const ProductModal = () => {
                                 <div className="offer_coutdown">
                                   <div className="mr-10">
                                     <span className="text-bold">
-                                      Ends In :{' '}
+                                      Ends In :{" "}
                                     </span>
                                   </div>
 
@@ -250,8 +254,8 @@ const ProductModal = () => {
                                         }
                                         className={
                                           sizeNumber === index
-                                            ? 'active_size'
-                                            : ''
+                                            ? "active_size"
+                                            : ""
                                         }
                                         type="button"
                                         key={index}
@@ -263,7 +267,7 @@ const ProductModal = () => {
                                 </div>
                                 <div className="product-quantity-cart mb-25">
                                   <div className="product-quantity-form">
-                                    <form onSubmit={e => e.preventDefault()}>
+                                    <form onSubmit={(e) => e.preventDefault()}>
                                       <button
                                         onClick={() =>
                                           dispatch(decrease_quantity(item))
@@ -309,10 +313,10 @@ const ProductModal = () => {
                                 </>
                               ) : (
                                 <>
-                                  {' '}
+                                  {" "}
                                   <p className="text-danger">
                                     This Product Is Out Of Stock
-                                  </p>{' '}
+                                  </p>{" "}
                                 </>
                               )}
                             </div>
@@ -326,7 +330,7 @@ const ProductModal = () => {
                                       <Link key={index} href="#" rel="tag">
                                         {color.color}
                                       </Link>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               </>

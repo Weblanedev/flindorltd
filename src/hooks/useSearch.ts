@@ -1,4 +1,4 @@
-import { products_data } from '@/data/products-data';
+import { useProductsContext } from '@/contextApi/ProductsProvider';
 import useGlobalContext from './use-context';
 
 export const useSearch = () => {
@@ -7,10 +7,12 @@ export const useSearch = () => {
 
     // settotalShowingProduct
   } = useGlobalContext();
+  const { products } = useProductsContext();
+  
   if (!filterSearch || filterSearch.trim() === '') {
     return [];
   }
-  const filterBySearch = products_data.filter(
+  const filterBySearch = products.filter(
     item =>
       item.title.toLowerCase().includes(filterSearch.toLowerCase()) ||
       item.category.toLowerCase().includes(filterSearch.toLowerCase()) ||
@@ -28,7 +30,8 @@ export const useSearchForVendor = (vendorId: string) => {
     return [];
   }
 
-  const filterVendorData = products_data?.filter(
+  const { products } = useProductsContext();
+  const filterVendorData = products?.filter(
     item => item?.vendorId === vendorId
   );
   const filterBySearch = filterVendorData.filter(
