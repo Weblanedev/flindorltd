@@ -32,12 +32,6 @@ const formatMoney = (value: number) =>
     maximumFractionDigits: 0,
   }).format(value);
 
-const maskCard = (cardNumber: string) => {
-  const digits = cardNumber.replace(/\D/g, "");
-  if (digits.length < 4) return "****";
-  return `**** **** **** ${digits.slice(-4)}`;
-};
-
 // Format card number with spaces every 4 digits
 const formatCardNumber = (value: string) => {
   const digits = value.replace(/\D/g, "");
@@ -139,6 +133,26 @@ const CheckoutMain = () => {
     isValidExpiry(card.expiry) &&
     card.cvv.length === 3;
 
+  // Countdown timer effect (must be called unconditionally)
+  useEffect(() => {
+    if (processing && countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [processing, countdown]);
+
+  // Handle redirect after payment processing completes (must be called unconditionally)
+  useEffect(() => {
+    if (isRedirecting && !processing) {
+      const redirectTimer = setTimeout(() => {
+        router.replace("/");
+      }, 100);
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [isRedirecting, processing, router]);
+
   // Don't redirect if we're processing payment or already redirecting
   if (!cartProducts.length && !processing && !isRedirecting) {
     router.replace("/products");
@@ -153,27 +167,6 @@ const CheckoutMain = () => {
     setStep(2);
     toast.success("Delivery details saved");
   };
-
-  // Countdown timer effect
-  useEffect(() => {
-    if (processing && countdown > 0) {
-      const timer = setTimeout(() => {
-        setCountdown(countdown - 1);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [processing, countdown]);
-
-  // Handle redirect after payment processing completes
-  useEffect(() => {
-    if (isRedirecting && !processing) {
-      // Small delay to ensure state updates are complete
-      const redirectTimer = setTimeout(() => {
-        router.replace("/");
-      }, 100);
-      return () => clearTimeout(redirectTimer);
-    }
-  }, [isRedirecting, processing, router]);
 
   const onPay = async () => {
     if (!canPay) {

@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import logoImg from "../../../public/assets/img/logo/logo.svg";
 import menu_data from "@/data/menu-data";
-import socials_data from "@/data/social-data";
 import contact_data from "@/data/contact-data";
 
 const FooterOne = () => {

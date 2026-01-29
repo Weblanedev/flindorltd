@@ -16,12 +16,13 @@ export default function PrivacyMain() {
               1. Introduction
             </h2>
             <p className="text-gray-700 mb-4">
-              appliance store (NEC) or household appliances stores ("we," "our,"
-              or "us"). We are committed to protecting your privacy and ensuring
-              you have a positive experience on our website and in using our
-              products and services. This Privacy Policy explains how we
-              collect, use, disclose, and safeguard your information when you
-              visit our website and purchase our products.
+              appliance store (NEC) or household appliances stores
+              (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are
+              committed to protecting your privacy and ensuring you have a
+              positive experience on our website and in using our products and
+              services. This Privacy Policy explains how we collect, use,
+              disclose, and safeguard your information when you visit our
+              website and purchase our products.
             </p>
           </section>
 
@@ -154,11 +155,12 @@ export default function PrivacyMain() {
 
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-primary mb-4">
-              8. Children's Privacy
+              8. Children&apos;s Privacy
             </h2>
             <p className="text-gray-700 mb-4">
               Our website is not intended for children under the age of 18. We
-              do not knowingly collect personal information from children.
+              do not knowingly collect personal information from children under
+              18.
             </p>
           </section>
 
@@ -169,7 +171,7 @@ export default function PrivacyMain() {
             <p className="text-gray-700 mb-4">
               We may update this Privacy Policy from time to time. We will
               notify you of any changes by posting the new Privacy Policy on
-              this page and updating the "Last Updated" date.
+              this page and updating the &quot;Last Updated&quot; date.
             </p>
           </section>
 

@@ -8,7 +8,7 @@ export const useSearch = () => {
     // settotalShowingProduct
   } = useGlobalContext();
   const { products } = useProductsContext();
-  
+
   if (!filterSearch || filterSearch.trim() === '') {
     return [];
   }
@@ -26,11 +26,12 @@ export const useSearchForVendor = (vendorId: string) => {
     filterSearch,
     // settotalShowingProduct
   } = useGlobalContext();
+  const { products } = useProductsContext();
+
   if (!filterSearch || filterSearch.trim() === '') {
     return [];
   }
 
-  const { products } = useProductsContext();
   const filterVendorData = products?.filter(
     item => item?.vendorId === vendorId
   );

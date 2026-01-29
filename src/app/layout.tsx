@@ -24,10 +24,11 @@ export default function RootLayout({
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           <link rel="icon" href="/favicon.ico" />
+          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
           <link
             href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
-          ></link>
+          />
         </head>
 
         <body suppressHydrationWarning={true}>
